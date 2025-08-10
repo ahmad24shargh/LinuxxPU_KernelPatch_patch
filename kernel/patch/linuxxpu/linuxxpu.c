@@ -124,7 +124,7 @@ static long call_kpm_info(const char *__user uname, char *__user out_info, int o
 
 // =====================================================================================
 
-void before_sukisu_load_module_path(hook_fargs4_t* args, void* udata) {
+void before_linuxxpu_load_module_path(hook_fargs4_t* args, void* udata) {
     const char* path = (const char*) args->arg0;
     const char* arg = (const char*) args->arg1;
     void* ptr = (void*) args->arg2;
@@ -137,7 +137,7 @@ void before_sukisu_load_module_path(hook_fargs4_t* args, void* udata) {
     args->skip_origin = 1;
 }
 
-void before_sukisu_unload_module(hook_fargs3_t* args,void* udata) {
+void before_linuxxpu_unload_module(hook_fargs3_t* args,void* udata) {
     const char* name = (const char*)args->arg0;
     void* ptr = (void*) args->arg1;
     void __user* result = (void*) args->arg2;
@@ -147,7 +147,7 @@ void before_sukisu_unload_module(hook_fargs3_t* args,void* udata) {
     args->skip_origin = 1;
 }
 
-void before_sukisu_kpm_num(hook_fargs1_t* args, void* udata) {
+void before_linuxxpu_kpm_num(hook_fargs1_t* args, void* udata) {
     void __user* result = (void*) args->arg0;
 
     int res = (int) get_module_nums();
@@ -155,7 +155,7 @@ void before_sukisu_kpm_num(hook_fargs1_t* args, void* udata) {
     args->skip_origin = 1;
 }
 
-void before_sukisu_kpm_list(hook_fargs3_t* args, void* udata) {
+void before_linuxxpu_kpm_list(hook_fargs3_t* args, void* udata) {
     char* __user out = (char* __user) args->arg0;
     int len = (int) args->arg1;
     void __user* result = (void*) args->arg2;
@@ -166,7 +166,7 @@ void before_sukisu_kpm_list(hook_fargs3_t* args, void* udata) {
     args->skip_origin = 1;
 }
 
-void before_sukisu_kpm_info(hook_fargs3_t* args, void* udata) {
+void before_linuxxpu_kpm_info(hook_fargs3_t* args, void* udata) {
     char* name = (char*) args->arg0;
     char* __user out = (char* __user) args->arg1;
     void __user* result = (void*) args->arg2;
@@ -180,7 +180,7 @@ void before_sukisu_kpm_info(hook_fargs3_t* args, void* udata) {
     args->skip_origin = 1;
 }
 
-void before_sukisu_kpm_version(hook_fargs3_t* args, void* udata) {
+void before_linuxxpu_kpm_version(hook_fargs3_t* args, void* udata) {
     char __user* out = (char __user*) args->arg0;
     unsigned int outlen = (unsigned int) args->arg1;
     void __user* result = (void*) args->arg2;
@@ -200,7 +200,7 @@ void before_sukisu_kpm_version(hook_fargs3_t* args, void* udata) {
 }
 
 
-void before_sukisu_kpm_control(hook_fargs3_t* args, void* udata) {
+void before_linuxxpu_kpm_control(hook_fargs3_t* args, void* udata) {
     char __user* name = (char __user*) args->arg0;
     char __user* arg = (char __user*) args->arg1;
     void __user* result = (void*) args->arg2;
@@ -210,64 +210,64 @@ void before_sukisu_kpm_control(hook_fargs3_t* args, void* udata) {
     args->skip_origin = 1;
 }
 
-void init_sukisu_ultra() {
+void init_linuxxpu_ultra() {
     unsigned long addr;
     int rc;
 
-    addr = kallsyms_lookup_name("sukisu_kpm_load_module_path");
+    addr = kallsyms_lookup_name("linuxxpu_kpm_load_module_path");
     if(addr) {
-        rc = hook_wrap4((void*) addr, before_sukisu_load_module_path, NULL, NULL);
-        log_boot("hook sukisu_load_module_path rc:%d \n", rc);
+        rc = hook_wrap4((void*) addr, before_linuxxpu_load_module_path, NULL, NULL);
+        log_boot("hook linuxxpu_load_module_path rc:%d \n", rc);
     } else {
-        log_boot("hook sukisu_load_module_path faild \n", rc);
+        log_boot("hook linuxxpu_load_module_path faild \n", rc);
     }
 
-    addr = kallsyms_lookup_name("sukisu_kpm_unload_module");
+    addr = kallsyms_lookup_name("linuxxpu_kpm_unload_module");
     if(addr) {
-        rc = hook_wrap3((void*) addr, before_sukisu_unload_module, NULL, NULL);
-        log_boot("hook sukisu_kpm_unload_module rc:%d \n", rc);
+        rc = hook_wrap3((void*) addr, before_linuxxpu_unload_module, NULL, NULL);
+        log_boot("hook linuxxpu_kpm_unload_module rc:%d \n", rc);
     } else {
-        log_boot("hook sukisu_kpm_unload_module faild \n", rc);
+        log_boot("hook linuxxpu_kpm_unload_module faild \n", rc);
     }
 
-    addr = kallsyms_lookup_name("sukisu_kpm_num");
+    addr = kallsyms_lookup_name("linuxxpu_kpm_num");
     if(addr) {
-        rc = hook_wrap1((void*) addr, before_sukisu_kpm_num, NULL, NULL);
-        log_boot("hook sukisu_kpm_num rc:%d \n", rc);
+        rc = hook_wrap1((void*) addr, before_linuxxpu_kpm_num, NULL, NULL);
+        log_boot("hook linuxxpu_kpm_num rc:%d \n", rc);
     } else {
-        log_boot("hook sukisu_kpm_num faild \n", rc);
+        log_boot("hook linuxxpu_kpm_num faild \n", rc);
     }
 
-    addr = kallsyms_lookup_name("sukisu_kpm_list");
+    addr = kallsyms_lookup_name("linuxxpu_kpm_list");
     if(addr) {
-        rc = hook_wrap3((void*) addr, before_sukisu_kpm_list, NULL, NULL);
-        log_boot("hook sukisu_kpm_list rc:%d \n", rc);
+        rc = hook_wrap3((void*) addr, before_linuxxpu_kpm_list, NULL, NULL);
+        log_boot("hook linuxxpu_kpm_list rc:%d \n", rc);
     } else {
-        log_boot("hook sukisu_kpm_list faild \n", rc);
+        log_boot("hook linuxxpu_kpm_list faild \n", rc);
     }
 
-    addr = kallsyms_lookup_name("sukisu_kpm_info");
+    addr = kallsyms_lookup_name("linuxxpu_kpm_info");
     if(addr) {
-        rc = hook_wrap3((void*) addr, before_sukisu_kpm_info, NULL, NULL);
-        log_boot("hook sukisu_kpm_info rc:%d \n", rc);
+        rc = hook_wrap3((void*) addr, before_linuxxpu_kpm_info, NULL, NULL);
+        log_boot("hook linuxxpu_kpm_info rc:%d \n", rc);
     } else {
-        log_boot("hook sukisu_kpm_info faild \n", rc);
+        log_boot("hook linuxxpu_kpm_info faild \n", rc);
     }
 
-    addr = kallsyms_lookup_name("sukisu_kpm_control");
+    addr = kallsyms_lookup_name("linuxxpu_kpm_control");
     if(addr) {
-        rc = hook_wrap3((void*) addr, before_sukisu_kpm_control, NULL, NULL);
-        log_boot("hook sukisu_kpm_control rc:%d \n", rc);
+        rc = hook_wrap3((void*) addr, before_linuxxpu_kpm_control, NULL, NULL);
+        log_boot("hook linuxxpu_kpm_control rc:%d \n", rc);
     } else {
-        log_boot("hook sukisu_kpm_control faild \n", rc);
+        log_boot("hook linuxxpu_kpm_control faild \n", rc);
     }
 
-    addr = kallsyms_lookup_name("sukisu_kpm_version");
+    addr = kallsyms_lookup_name("linuxxpu_kpm_version");
     if(addr) {
-        rc = hook_wrap3((void*) addr, before_sukisu_kpm_version, NULL, NULL);
-        log_boot("hook sukisu_kpm_version rc:%d \n", rc);
+        rc = hook_wrap3((void*) addr, before_linuxxpu_kpm_version, NULL, NULL);
+        log_boot("hook linuxxpu_kpm_version rc:%d \n", rc);
     } else {
-        log_boot("hook sukisu_kpm_version faild \n", rc);
+        log_boot("hook linuxxpu_kpm_version faild \n", rc);
     }
 
 }
