@@ -1,9 +1,11 @@
-CC = g++
-ANDROID_CC = aarch64-linux-android-clang++
+#CC = g++
+CC = clang++
+#ANDROID_CC = aarch64-linux-android-clang++
+ANDROID_CC =  aarch64-linux-gnu-c++filt
 CXXFLAGS = -std=c++17 -Iinclude
 OPTIMIZE = -O3
 ANDROID_SYSROOT = $(ANDROID_NDK_LATEST_HOME)/toolchains/llvm/prebuilt/linux-x86_64/sysroot
-ANDROID_CC = aarch64-linux-android24-clang++
+#ANDROID_CC = aarch64-linux-android24-clang++
 ANDROID_CFLAGS = -static-libstdc++ -fPIE -pie
 ANDROID_LDFLAGS = -lc++_static -lc++fs -landroid_support
 
