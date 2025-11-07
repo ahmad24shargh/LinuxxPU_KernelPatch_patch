@@ -9,7 +9,7 @@ LD = $(TARGET_COMPILE)/ld.lld
 AS = $(TARGET_COMPILE)/llvm-as
 OBJCOPY = $(TARGET_COMPILE)/llvm-objcopy
 
-CFLAGS += -Wall -fno-builtin -std=gnu11 -nostdinc -mgeneral-regs-only
+CFLAGS += -Wall -fno-builtin -std=gnu11 -nostdinc
 CFLAGS += -g
 CFLAGS += -Wno-unused-function -Wno-return-type -Wno-c23-extensions -Wno-uninitialized
 CFLAGS += -fno-PIC -fno-asynchronous-unwind-tables -fno-stack-protector -fno-unwind-tables -fno-semantic-interposition -U_FORTIFY_SOURCE -fno-common
