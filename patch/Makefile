@@ -2,7 +2,7 @@ CC = g++
 ANDROID_CC = aarch64-linux-android-clang++
 CXXFLAGS = -std=c++17 -Iinclude
 OPTIMIZE = -O3
-ANDROID_SYSROOT = $(ANDROID_NDK_HOME)/toolchains/llvm/prebuilt/linux-x86_64/sysroot
+ANDROID_SYSROOT = $(ANDROID_NDK_LATEST_HOME)/toolchains/llvm/prebuilt/linux-x86_64/sysroot
 ANDROID_CC = aarch64-linux-android24-clang++
 ANDROID_CFLAGS = -static-libstdc++ -fPIE -pie
 ANDROID_LDFLAGS = -lc++_static -lc++fs -landroid_support
@@ -43,8 +43,8 @@ android: generate_headers
 	
 android-static: generate_headers
 	$(ANDROID_CC) $(CXXFLAGS) $(ANDROID_CFLAGS) \
-	--target=aarch64-none-linux-android24 \
-	--sysroot=$(ANDROID_NDK_HOME)/toolchains/llvm/prebuilt/linux-x86_64/sysroot \
+	--target=aarch64-none-linux-android33 \
+	--sysroot=$(ANDROID_NDK_LATEST_HOME)/toolchains/llvm/prebuilt/linux-x86_64/sysroot \
 	main.cpp -o patch-android \
 	$(ANDROID_LDFLAGS)
 
