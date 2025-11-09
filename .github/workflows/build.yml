@@ -22,8 +22,8 @@ jobs:
           #grep -Rai --exclude-dir=.github . -e 'sukisu' 2>/dev/null
           #curl -o arm-gnu-toolchain-12.2.rel1-x86_64-aarch64-none-elf.tar.xz https://armkeil.blob.core.windows.net/developer/Files/downloads/gnu/12.2.rel1/binrel/arm-gnu-toolchain-12.2.rel1-x86_64-aarch64-none-elf.tar.xz
           #tar -Jxf arm-gnu-toolchain-12.2.rel1-x86_64-aarch64-none-elf.tar.xz
-          export TARGET_COMPILE=$(dirname $(which clang))
-          echo $TARGET_COMPILE
+          #export TARGET_COMPILE=$(dirname $(which clang))
+          #echo $TARGET_COMPILE
           find . -name 'clang*'
           #export PATH=${GITHUB_WORKSPACE}/clang-22/bin:${GITHUB_WORKSPACE}/clang-22/x86_64-pc-linux-gnu/bin:$PATH
           HOME=${GITHUB_WORKSPACE}
@@ -33,7 +33,7 @@ jobs:
           PATCH=${HOME}/patch
           mkdir -p ${PATCH}/res
           KERNEL=${HOME}/kernel
-          #export TARGET_COMPILE=${ANDROID_NDK_LATEST_HOME}/toolchains/llvm/prebuilt/linux-x86_64/bin
+          export TARGET_COMPILE=${ANDROID_NDK_LATEST_HOME}/toolchains/llvm/prebuilt/linux-x86_64/bin
           #export TARGET_COMPILE=${GITHUB_WORKSPACE}/clang-22/x86_64-pc-linux-gnu/bin
           mkdir -p $PATCH/res
           #$ANDROID_NDK_LATEST_HOME/ndk-build
