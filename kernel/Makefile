@@ -4,7 +4,7 @@ endif
 
 TARGET=kpimg
 
-CC = $(TARGET_COMPILE)/aarch64-linux-android35-clang
+CC = $(TARGET_COMPILE)/aarch64-linux-android33-clang
 LD = $(TARGET_COMPILE)/ld.lld
 AS = $(TARGET_COMPILE)/llvm-as
 OBJCOPY = $(TARGET_COMPILE)/llvm-objcopy
